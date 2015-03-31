@@ -1,0 +1,111 @@
+﻿<UserControl x:Class="PlannerNameSpace.View.Content.BacklogDetail"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:mui="http://firstfloorsoftware.com/ModernUI"
+             xmlns:vc="clr-namespace:PlannerNameSpace.View.Content"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+
+    <Grid Style="{StaticResource ContentRoot}">
+        <ScrollViewer  >
+            <Grid >
+                <Grid.Resources>
+                    <Style TargetType="TextBlock">
+                        <Setter Property="FontFamily" Value="Segoe UI"/>
+                        <Setter Property="FontSize" Value="12" />
+                        <Setter Property="FontWeight" Value="SemiBold"/>
+                        <Setter Property="Foreground" Value="Black"/>
+                        <Setter Property="VerticalAlignment" Value="Center"/>
+                        <Setter Property="Margin" Value="0,0,0,0"/>
+                    </Style>
+
+                    <Style TargetType="TextBox">
+                        <Setter Property="TextWrapping" Value="Wrap"/>
+                        <Setter Property="FontFamily" Value="Segoe UI"/>
+                        <Setter Property="FontSize" Value="14" />
+                        <Setter Property="FontWeight" Value="Normal"/>
+                        <Setter Property="Foreground" Value="Black"/>
+                        <Setter Property="Margin" Value="0,0,0,0"/>
+                    </Style>
+
+                </Grid.Resources>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Grid.Row="0" Grid.Column="4" Grid.ColumnSpan="2"  Style="{StaticResource SmallStatusStackPanel}" >
+
+                    <!-- ID-->
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                        <TextBlock Text="ID|" Style="{StaticResource SmallStatusTextBlock}"/>
+                        <TextBox Text="{Binding ID, Mode=OneWay}" IsReadOnly="True" Style="{StaticResource SmallStatusTextBox}"/>
+                    </StackPanel>
+
+                    <!-- Opened By-->
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                        <TextBlock Text="Opened By|" Style="{StaticResource SmallStatusTextBlock}"/>
+                        <TextBox Text="{Binding OpenedBy, Mode=OneWay}"  IsReadOnly="True" Style="{StaticResource SmallStatusTextBox}"/>
+                    </StackPanel>
+
+                    <!-- Opened Date-->
+                    <StackPanel Orientation="Horizontal"  HorizontalAlignment="Right">
+                        <TextBlock Text="Opened Date|" Style="{StaticResource SmallStatusTextBlock}" />
+                        <TextBox Text="{Binding OpenedDateShort, Mode=OneWay}"  IsReadOnly="True" Style="{StaticResource SmallStatusTextBox}"/>
+                    </StackPanel>
+                </StackPanel>
+
+                <!-- Area (Pillar)-->
+                <StackPanel Grid.Row="1" Grid.Column="0" Grid.RowSpan="1" Grid.ColumnSpan="2"  Orientation="Vertical" Margin="4">
+                    <Label Content="{Binding Path=PillarFriendlyName}"  />
+                    <ComboBox ItemsSource="{Binding PillarItemsView}" SelectedItem="{Binding ParentPillarItem, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" DisplayMemberPath="Title" />
+                </StackPanel>
+
+                <!-- Train-->
+                <StackPanel Grid.Row="1" Grid.Column="2" Grid.RowSpan="1" Grid.ColumnSpan="2"  Orientation="Vertical" Margin="4">
+                    <Label Content="{Binding Path=TrainFriendlyName}"  />
+                    <ComboBox ItemsSource="{Binding TrainItemsView}" SelectedItem="{Binding ParentTrainItem, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" DisplayMemberPath="Title"/>
+                </StackPanel>
+
+                <!-- PM Owner-->
+                <StackPanel Grid.Row="1" Grid.Column="4" Grid.RowSpan="1" Grid.ColumnSpan="2"  Orientation="Vertical" Margin="4">
+                    <Label Content="PM Owner"  />
+                    <ComboBox ItemsSource="{Binding Path=AvailablePMMembers}" SelectedValue="{Binding PMOwner, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" DisplayMemberPath="DisplayName" SelectedValuePath="Alias"/>
+                </StackPanel>
+
+                <!-- Description -->
+                <StackPanel Grid.Row="2" Grid.Column="0" Grid.RowSpan="2" Grid.ColumnSpan="6"  >
+                    <vc:PlannerRichTextControl HeaderText="Description" 
+                                               SourceStoreItem="{Binding}" SourceStoreItemPropName="Description" 
+                                               HorizontalAlignment="Left"
+                                               MinWidth="250"/>
+                </StackPanel>
+
+                <StackPanel Grid.Row="4" Grid.Column="0" Grid.RowSpan="2" Grid.ColumnSpan="6"  >
+                    <vc:PlannerRichTextControl HeaderText="Acceptance Criteria" 
+                                               SourceStoreItem="{Binding}" SourceStoreItemPropName="AcceptanceCriteria" 
+                                               HorizontalAlignment="Left"
+                                               MinWidth="250"/>
+                </StackPanel>
+            </Grid>
+            
+        </ScrollViewer>
+    </Grid>
+</UserControl>

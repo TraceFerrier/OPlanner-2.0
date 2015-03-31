@@ -1,0 +1,84 @@
+﻿<UserControl x:Class="PlannerNameSpace.View.Pages.BacklogSummary"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:mui="http://firstfloorsoftware.com/ModernUI"
+             xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+             xmlns:bh="clr-namespace:PlannerNameSpace.ViewModel.Behaviors"
+             xmlns:c="clr-namespace:PlannerNameSpace"
+             xmlns:vm="clr-namespace:PlannerNameSpace.ViewModel"
+             xmlns:cmd="clr-namespace:PlannerNameSpace.Commands"
+             xmlns:cc="clr-namespace:PlannerNameSpace.ViewModel.CustomCommands"
+             xmlns:vc="clr-namespace:PlannerNameSpace.View.Content"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    
+    <UserControl.DataContext>
+        <vm:BacklogSummaryViewModel/>
+    </UserControl.DataContext>
+
+    <UserControl.CommandBindings>
+        <cmd:DataContextCommandBinding Command="cc:FilterCommands.FilterSelectionChanged" Executed="FilterSelectionsChanged" CanExecute="CanFilterSelectionsChange" />
+        <cmd:DataContextCommandBinding Command="cc:ViewModelCommands.CreateBacklogItem" Executed="CreateItem" CanExecute="CanCreateItem" />
+        <cmd:DataContextCommandBinding Command="cc:ViewModelCommands.DeleteBacklogItem" Executed="DeleteItem" CanExecute="CanDeleteItem" />
+        <cmd:DataContextCommandBinding Command="cc:ViewModelCommands.CreateWorkItem" Executed="CreateWorkItem" CanExecute="CanCreateWorkItem" />
+        <cmd:DataContextCommandBinding Command="cc:ViewModelCommands.DeleteWorkItem" Executed="DeleteWorkItem" CanExecute="CanDeleteWorkItem" />
+        <cmd:DataContextCommandBinding Command="cc:ViewModelCommands.RefreshView" Executed="RefreshView" CanExecute="CanRefreshView" />
+    </UserControl.CommandBindings> 
+
+    <Grid Style="{StaticResource ContentRoot}">
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200"/>
+            <ColumnDefinition Width="360"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Border Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" Grid.ColumnSpan="3" BorderBrush="Black" BorderThickness="3" CornerRadius="3" Background="{DynamicResource WindowBackground}"/>
+        <Border Grid.Row="0" Grid.Column="0" Grid.RowSpan="1" Grid.ColumnSpan="3" BorderBrush="DarkGray" BorderThickness="0,0,0,1" Margin="3,0,3,0" CornerRadius="1"/>
+        <Border Grid.Row="0" Grid.Column="1" Grid.RowSpan="2" Grid.ColumnSpan="2" BorderBrush="DarkGray" BorderThickness="1,0,0,0" Margin="0,3,0,3" CornerRadius="1"/>
+        <Border Grid.Row="1" Grid.Column="2" Grid.RowSpan="1" Grid.ColumnSpan="1" BorderBrush="DarkGray" BorderThickness="1,0,0,0" Margin="0,0,0,3" CornerRadius="1"/>
+
+        <StackPanel Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="3" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center">
+            <mui:ModernButton Content="New" Command="cc:ViewModelCommands.CreateBacklogItem" IconData="{StaticResource NewIconData}" Margin="10"/>
+            <mui:ModernButton Content="Delete" Command="cc:ViewModelCommands.DeleteBacklogItem" IconData="{StaticResource DeleteIconData}" Margin="10"/>
+            <mui:ModernButton Content="Refresh View" Command="cc:ViewModelCommands.RefreshView" IconData="{StaticResource RefreshIconData}" Margin="10" />
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="10">
+                <Label Content="Sort by: "  />
+                <ComboBox ItemsSource="{Binding SortingCriteria}" SelectedItem="{Binding SelectedSortCriteria}" />
+            </StackPanel>
+        </StackPanel>
+
+        <StackPanel Grid.Row="0" Grid.Column="0" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+            <TextBlock Text="Filter Your " Style="{StaticResource FilterHeading}" Margin="0"/>
+            <TextBlock Text="{x:Static c:Constants.BacklogsFriendlyName}" Style="{StaticResource FilterHeading}" Margin="0"/>
+        </StackPanel>
+
+        <ListBox Grid.Column="0" Grid.Row="1" ItemsSource="{Binding Path=ItemFilters}" 
+                 Style="{StaticResource DetailsListBoxStyle}" 
+                 ItemTemplate="{StaticResource ItemFilterListTemplate}"
+                 ItemContainerStyle="{StaticResource DetailsStandardListBoxItemsStyle}"
+                 Margin="4,2,1,4"/>
+        
+        <ListBox x:Name="BacklogItemsListBox" Grid.Column="1" Grid.Row="1" ItemsSource="{Binding Path=ItemsView}" 
+                 SelectedItem="{Binding Path=SelectedItem, Mode=TwoWay}" 
+                 Style="{StaticResource DetailsListBoxStyle}" 
+                 ItemTemplate="{StaticResource BacklogDetailListTemplate}"
+                 ItemContainerStyle="{StaticResource DetailsBacklogItemsListBoxItemsStyle}"
+                 IsSynchronizedWithCurrentItem="True"
+                 Margin="1,2,1,4">
+                    <i:Interaction.Behaviors>
+                        <bh:ScrollIntoViewBehavior />
+                    </i:Interaction.Behaviors>
+        </ListBox>
+
+        <ContentControl x:Name="BacklogDetailsContentControl" Grid.Column="2" Grid.Row="1" Content="{Binding Path=SelectedItem}" />
+        
+    </Grid>
+</UserControl>

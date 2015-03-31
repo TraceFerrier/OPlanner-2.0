@@ -1,0 +1,451 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{6C99840B-B512-4A4F-8B54-74251FA6E48F}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>PlannerNameSpace</RootNamespace>
+    <AssemblyName>OPlanner 2.0</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="FirstFloor.ModernUI, Version=1.0.5.0, Culture=neutral, PublicKeyToken=2d21ec3cd074c59a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Samples\ModernUI_WithHeaderFooter\FirstFloor.ModernUI\FirstFloor.ModernUI\bin\Release\FirstFloor.ModernUI.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.DirectoryServices" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Assets\ListBoxStylesResourceDictionary.cs" />
+    <Compile Include="CommandBinding\CommandExecutionManager.cs" />
+    <Compile Include="CommandBinding\DataContextCommandAdapter.cs" />
+    <Compile Include="CommandBinding\DataContextCommandBinding.cs" />
+    <Compile Include="CommandBinding\RoutedCommandBinding.cs" />
+    <Compile Include="CommandBinding\RoutedCommandMonitor.cs" />
+    <Compile Include="Model\Repository\DSItemStore\Base\ItemTypeKey.cs" />
+    <Compile Include="Model\Repository\ItemRepository.cs" />
+    <Compile Include="Model\Repository\IRepository.cs" />
+    <Compile Include="PlannerApp\Planner.cs" />
+    <Compile Include="PlannerApp\PlannerEvents.cs" />
+    <Compile Include="PlannerApp\PlannerFilters.cs" />
+    <Compile Include="Utilities\BackgroundTask\BackgroundTaskProgressDialog.cs" />
+    <Compile Include="ViewModel\BacklogSummaryViewModel.cs" />
+    <Compile Include="ViewModel\BaseItemViewModel.cs" />
+    <Compile Include="ViewModel\Behaviors\ScrollIntoViewBehavior.cs" />
+    <Compile Include="ViewModel\CustomCommands\FilterCommands.cs" />
+    <Compile Include="ViewModel\CustomCommands\ModelCommands.cs" />
+    <Compile Include="ViewModel\CustomCommands\ViewModelCommands.cs" />
+    <Compile Include="ViewModel\Events\InvalidHierarchicalItemEvent.cs" />
+    <Compile Include="ViewModel\Filtering\FilterValue.cs" />
+    <Compile Include="ViewModel\Filtering\FilterValueCollection.cs" />
+    <Compile Include="ViewModel\Filtering\ItemFilter.cs" />
+    <Compile Include="ViewModel\Filtering\ItemFilterCollection.cs" />
+    <Compile Include="ViewModel\MainWindowViewModel.cs" />
+    <Compile Include="ViewModel\ScenarioSummaryViewModel.cs" />
+    <Compile Include="ViewModel\Sorting\SortUtils.cs" />
+    <Compile Include="ViewModel\StoreItemViewModels\Changes\CommitChangesWorker.cs" />
+    <Compile Include="ViewModel\StoreItemViewModels\Changes\StoreChangeAction.cs" />
+    <Compile Include="ViewModel\Collections\AsyncObservableCollection.cs" />
+    <Compile Include="Model\Repository\ItemManager\CommitmentStatus\StoreSpecStatus.cs" />
+    <Compile Include="ViewModel\Enums\CommitmentSettingValues.cs" />
+    <Compile Include="ViewModel\Enums\IsOpenedForEdit.cs" />
+    <Compile Include="ViewModel\Enums\ProductTreeFormat.cs" />
+    <Compile Include="ViewModel\Enums\StoreSpecStatusValue.cs" />
+    <Compile Include="ViewModel\Enums\TrainCommitmentStatusValue.cs" />
+    <Compile Include="ViewModel\Events\ChangeListUpdatedEvent.cs" />
+    <Compile Include="ViewModel\Events\EventManager.cs" />
+    <Compile Include="ViewModel\Events\ItemDiscoveredEvent.cs" />
+    <Compile Include="ViewModel\Events\PlannerQueryCompletedEvent.cs" />
+    <Compile Include="ViewModel\Events\ProductGroupOpenedEvent.cs" />
+    <Compile Include="ViewModel\Events\PropertyEvent.cs" />
+    <Compile Include="ViewModel\Events\ScrumTeamChangedEvent.cs" />
+    <Compile Include="ViewModel\Events\StoreCommitCompleteEvent.cs" />
+    <Compile Include="ViewModel\Events\StoreItemChangedEvent.cs" />
+    <Compile Include="ViewModel\Events\ViewItemCollectionCountChangedEvent.cs" />
+    <Compile Include="ViewModel\Collections\StoreItemCollection.cs" />
+    <Compile Include="Model\Repository\RepositoryCollections.cs" />
+    <Compile Include="Model\Repository\RepositoryManager.cs" />
+    <Compile Include="Model\Repository\RepositoryUtils.cs" />
+    <Compile Include="ViewModel\StoreItemViewModels\StoreItems\Attachments\AttachedFile.cs" />
+    <Compile Include="ViewModel\StoreItemViewModels\StoreItems\Attachments\Attachment.cs" />
+    <Compile Include="ViewModel\StoreItemViewModels\StoreItems\Attachments\DocumentAttachment.cs" />
+    <Compile Include="ViewModel\StoreItemViewModels\StoreItems\Attachments\DocumentAttachmentCollection.cs" />
+    <Compile Include="ViewModel\StoreItemViewModels\StoreItems\Attachments\ImageAttachment.cs" />
+    <Compile Include="ViewModel\StoreItemViewModels\StoreItems\Attachments\ImageAttachmentCollection.cs" />
+    <Compile Include="ViewModel\StoreItemViewModels\StoreItems\Attachments\ImageProps.cs" />
+    <Compile Include="ViewModel\StoreItemViewModels\StoreItems\Attachments\ItemAttachmentCollection.cs" />
+    <Compile Include="ViewModel\StoreItemViewModels\ItemProperties\AllowedValue.cs" />
+    <Compile Include="ViewModel\StoreItemViewModels\ItemProperties\BasePropertyChanged.cs" />
+    <Compile Include="ViewModel\StoreItemViewModels\ItemProperties\ItemProperty.cs" />
+    <Compile Include="ViewModel\StoreItemViewModels\ItemProperties\PropertyAllowedValues.cs" />
+    <Compile Include="ViewModel\StoreItemViewModels\ItemProperties\PropValues.cs" />
+    <Compile Include="ViewModel\StoreItemViewModels\StoreItems\BacklogItem\BacklogItem.cs" />
+    <Compile Include="ViewModel\StoreItemViewModels\StoreItems\BacklogItem\BacklogSpec.cs" />
+    <Compile Include="ViewModel\StoreItemViewModels\StoreItems\HelpContent\HelpContentItem.cs" />
+    <Compile Include="ViewModel\StoreItemViewModels\StoreItems\HelpContent\HelpManager.cs" />
+    <Compile Include="ViewModel\StoreItemViewModels\StoreItems\OffTime\OffTimeItem.cs" />
+    <Compile Include="ViewModel\StoreItemViewModels\StoreItems\Pillar\IDependsOnPillar.cs" />
+    <Compile Include="ViewModel\StoreItemViewModels\StoreItems\Pillar\PillarItem.cs" />
+    <Compile Include="ViewModel\StoreItemViewModels\StoreItems\PlannerBug\OPlannerBugItem.cs" />
+    <Compile Include="ViewModel\StoreItemViewModels\StoreItems\PlannerBug\OPlannerBugsDataSource.cs" />
+    <Compile Include="ViewModel\StoreItemViewModels\StoreItems\PlannerBug\ResolutionValues.cs" />
+    <Compile Include="ViewModel\StoreItemViewModels\StoreItems\PlannerBug\StatusValues.cs" />
+    <Compile Include="ViewModel\StoreItemViewModels\StoreItems\Experience\ExperienceItem.cs" />
+    <Compile Include="ViewModel\StoreItemViewModels\StoreItems\ScrumTeam\ScrumTeamItem.cs" />
+    <Compile Include="ViewModel\StoreItemViewModels\StoreItems\StoreItem\DeferredStoreItem.cs" />
+    <Compile Include="ViewModel\StoreItemViewModels\StoreItems\StoreItem\StoreItem.cs" />
+    <Compile Include="ViewModel\StoreItemViewModels\StoreItems\StoreItem\StoreItemCaches.cs" />
+    <Compile Include="ViewModel\StoreItemViewModels\StoreItems\StoreItem\StoreItemCalculatedValues.cs" />
+    <Compile Include="ViewModel\StoreItemViewModels\StoreItems\StoreItem\StoreItemDummy.cs" />
+    <Compile Include="ViewModel\StoreItemViewModels\StoreItems\StoreItem\StoreItemFilters.cs" />
+    <Compile Include="ViewModel\StoreItemViewModels\StoreItems\StoreItem\StoreItemGettersSetters.cs" />
+    <Compile Include="ViewModel\StoreItemViewModels\StoreItems\StoreItem\StoreItemHierarchy.cs" />
+    <Compile Include="ViewModel\StoreItemViewModels\StoreItems\StoreItem\StoreItemMethods.cs" />
+    <Compile Include="ViewModel\StoreItemViewModels\StoreItems\StoreItem\StoreItemNotifications.cs" />
+    <Compile Include="ViewModel\StoreItemViewModels\StoreItems\StoreItem\StoreItemOperations.cs" />
+    <Compile Include="ViewModel\StoreItemViewModels\StoreItems\StoreItem\StoreItemProperties.cs" />
+    <Compile Include="ViewModel\StoreItemViewModels\StoreItems\StoreItem\StoreItemRelationships.cs" />
+    <Compile Include="ViewModel\StoreItemViewModels\StoreItems\GroupMember\GroupMemberItem.cs" />
+    <Compile Include="ViewModel\StoreItemViewModels\StoreItems\GroupMember\GroupMemberItemCache.cs" />
+    <Compile Include="Model\Repository\GroupMemberRepository.cs" />
+    <Compile Include="ViewModel\StoreItemViewModels\StoreItems\GroupMember\MemberDescriptor.cs" />
+    <Compile Include="ViewModel\StoreItemViewModels\StoreItems\Persona\PersonaItem.cs" />
+    <Compile Include="ViewModel\StoreItemViewModels\StoreItems\ProductGroup\ProductGroupItem.cs" />
+    <Compile Include="ViewModel\StoreItemViewModels\StoreItems\ProductGroup\ProductGroupManager.cs" />
+    <Compile Include="ViewModel\StoreItemViewModels\StoreItems\StoreItem\StoreItemViews.cs" />
+    <Compile Include="ViewModel\StoreItemViewModels\StoreItems\Train\TrainItem.cs" />
+    <Compile Include="ViewModel\StoreItemViewModels\StoreItems\Definitions\IStoreItemList.cs" />
+    <Compile Include="ViewModel\StoreItemViewModels\StoreItems\Definitions\ItemType.cs" />
+    <Compile Include="ViewModel\StoreItemViewModels\StoreItems\Definitions\NotificationArgs.cs" />
+    <Compile Include="ViewModel\StoreItemViewModels\Changes\StoreItemChange.cs" />
+    <Compile Include="ViewModel\StoreItemViewModels\StoreItems\WorkItem\WorkItem.cs" />
+    <Compile Include="Model\Repository\DSItemStore\Base\DataStoreCreate.cs" />
+    <Compile Include="Model\Repository\DSItemStore\Base\DataStoreSave.cs" />
+    <Compile Include="Model\Repository\DSItemStore\Host\HostItemStore.cs" />
+    <Compile Include="Model\Repository\DSItemStore\Host\OfficeMainStore.cs" />
+    <Compile Include="Model\Repository\DSItemStore\Schedule\PSEvaluation2Store.cs" />
+    <Compile Include="Model\Repository\DSItemStore\Schedule\ScheduleStore.cs" />
+    <Compile Include="Model\Repository\DSItemQuery\ActiveItemTypeQuery.cs" />
+    <Compile Include="Model\Repository\DSItemQuery\BaseQuery.cs" />
+    <Compile Include="Model\Repository\DSItemQuery\HostItemQuery.cs" />
+    <Compile Include="Model\Repository\DSItemQuery\OplannerBugsQuery.cs" />
+    <Compile Include="Utilities\Extensions\Extensions.cs" />
+    <Compile Include="PlannerApp\PlannerOld.cs" />
+    <Compile Include="PlannerApp\Constants.cs" />
+    <Compile Include="Utilities\ProductTree\ProductTree.cs" />
+    <Compile Include="Utilities\ProductTree\ProductTreeManager.cs" />
+    <Compile Include="Utilities\ProductTree\ProductTreeNode.cs" />
+    <Compile Include="PlannerApp\UserPreferences.cs" />
+    <Compile Include="PlannerApp\Welcome\ApplicationWelcome.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Utilities\ActiveDirectory\UserInformation.cs" />
+    <Compile Include="Utilities\BackgroundTask\AbortableBackgroundWorker.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Utilities\BackgroundTask\BackgroundTask.cs" />
+    <Compile Include="Utilities\BackgroundTask\BackgroundTaskResult.cs" />
+    <Compile Include="Utilities\EnumUtils.cs" />
+    <Compile Include="Utilities\FileUtils.cs" />
+    <Compile Include="Utilities\MenuUtils.cs" />
+    <Compile Include="Utilities\ProductAreaTree.cs" />
+    <Compile Include="Utilities\RichText\RichTextContext.cs" />
+    <Compile Include="ViewModel\Sorting\BaseSort.cs" />
+    <Compile Include="ViewModel\Sorting\BusinessRankSort.cs" />
+    <Compile Include="ViewModel\Sorting\ItemPropertySort.cs" />
+    <Compile Include="ViewModel\Sorting\LandingDateSort.cs" />
+    <Compile Include="ViewModel\Sorting\StoreItemTypeSort.cs" />
+    <Compile Include="ViewModel\Sorting\TrainSort.cs" />
+    <Compile Include="Utilities\StringUtils.cs" />
+    <Compile Include="Utilities\TypeUtils.cs" />
+    <Compile Include="Utilities\SerializationUtils.cs" />
+    <Compile Include="Utilities\UserMessage.cs" />
+    <Compile Include="Utilities\WorkUtils.cs" />
+    <Compile Include="View\Content\BacklogWorkSummaryContent.xaml.cs">
+      <DependentUpon>BacklogWorkSummaryContent.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Content\ExperienceAssignFeaturesContent.xaml.cs">
+      <DependentUpon>ExperienceAssignFeaturesContent.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Content\ExperienceFeaturesContent.xaml.cs">
+      <DependentUpon>ExperienceFeaturesContent.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Content\ExperienceSummaryContent.xaml.cs">
+      <DependentUpon>ExperienceSummaryContent.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Dialogs\ScenarioAssignFeatures\ScenarioAssignFeaturesContent.xaml.cs">
+      <DependentUpon>ScenarioAssignFeaturesContent.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Pages\ScenarioSummary.xaml.cs">
+      <DependentUpon>ScenarioSummary.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Windows\ChangeListWindow.xaml.cs">
+      <DependentUpon>ChangeListWindow.xaml</DependentUpon>
+    </Compile>
+    <Page Include="Assets\ComboBoxStyles.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Assets\ContentTemplates.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Assets\DataGridStyles.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Assets\ItemViewStyles.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Assets\ListBoxStyles.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Assets\ModernButtons.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Assets\TextStyles.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="Model\Repository\DSItemComposities\CompositeRegistry.cs" />
+    <Compile Include="Model\Repository\DSItemComposities\CompositeValue.cs" />
+    <Compile Include="Model\Repository\DSItemStore\Base\DataStore.cs" />
+    <Compile Include="Model\Repository\DSItemStore\Base\DatastoreID.cs" />
+    <Compile Include="MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Page Include="View\Content\About.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Compile Include="View\Content\About.xaml.cs">
+      <DependentUpon>About.xaml</DependentUpon>
+    </Compile>
+    <Page Include="Utilities\BackgroundTask\BackgroundProgressContent.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Content\BacklogSummaryContent.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Content\BacklogWorkSummaryContent.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Content\ExperienceAssignFeaturesContent.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Content\ExperienceFeaturesContent.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Content\ExperienceSummaryContent.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Content\SettingsAppearance.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Compile Include="Utilities\BackgroundTask\BackgroundProgressContent.xaml.cs">
+      <DependentUpon>BackgroundProgressContent.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Content\BacklogSummaryContent.xaml.cs">
+      <DependentUpon>BacklogSummaryContent.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Content\SettingsAppearance.xaml.cs">
+      <DependentUpon>SettingsAppearance.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Content\SettingsAppearanceViewModel.cs" />
+    <Page Include="View\Content\PlannerRichTextControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Dialogs\ScenarioAssignFeatures\ScenarioAssignFeaturesContent.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Dialogs\StartupOptions\StartupOptionsDialogContent.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Dialogs\SelectProductGroup\SelectProductGroupContent.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Dialogs\Welcome\WelcomeDialogContent.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Pages\BacklogSummary.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Pages\Home.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Pages\Products.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Pages\ScenarioSummary.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Pages\Settings.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Compile Include="View\Content\PlannerRichTextControl.xaml.cs">
+      <DependentUpon>PlannerRichTextControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Converters\ChangesToSaveColorConverter.cs" />
+    <Compile Include="View\Dialogs\BaseDialog.cs" />
+    <Compile Include="View\Dialogs\StartupOptions\StartupOptionsDialog.cs" />
+    <Compile Include="View\Dialogs\StartupOptions\StartupOptionsDialogContent.xaml.cs">
+      <DependentUpon>StartupOptionsDialogContent.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Dialogs\SelectProductGroup\SelectProductGroupContent.xaml.cs">
+      <DependentUpon>SelectProductGroupContent.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Dialogs\SelectProductGroup\SelectProductGroupDialog.cs" />
+    <Compile Include="View\Dialogs\Welcome\WelcomeDialog.cs" />
+    <Compile Include="View\Dialogs\Welcome\WelcomeDialogContent.xaml.cs">
+      <DependentUpon>WelcomeDialogContent.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Pages\BacklogSummary.xaml.cs">
+      <DependentUpon>BacklogSummary.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Pages\Home.xaml.cs">
+      <DependentUpon>Home.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Pages\Products.xaml.cs">
+      <DependentUpon>Products.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Pages\Settings.xaml.cs">
+      <DependentUpon>Settings.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Page Include="View\Windows\ChangeListWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="ProductStudio">
+      <Guid>{F66AF47A-03D8-4CEA-A78C-F1AE2F84DD7D}</Guid>
+      <VersionMajor>2</VersionMajor>
+      <VersionMinor>1</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\GenericProfile.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\OPlannerLogo.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\EditBullets.png" />
+    <Resource Include="Images\EditCenterJustify.png" />
+    <Resource Include="Images\EditCopy.png" />
+    <Resource Include="Images\EditCreateHyperlink.png" />
+    <Resource Include="Images\EditCut.png" />
+    <Resource Include="Images\EditDecreaseIndent.png" />
+    <Resource Include="Images\EditDeleteHyperlink.png" />
+    <Resource Include="Images\EditFullJustify.png" />
+    <Resource Include="Images\EditIncreaseIndent.png" />
+    <Resource Include="Images\EditLeftJustify.png" />
+    <Resource Include="Images\EditNumbering.png" />
+    <Resource Include="Images\EditPaste.png" />
+    <Resource Include="Images\EditRedo.png" />
+    <Resource Include="Images\EditUndo.png" />
+    <Resource Include="Images\EditUndock2.png" />
+    <Resource Include="Images\GrowFont.png" />
+    <Resource Include="Images\ShrinkFont.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\ChangeViewer.png" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
